@@ -1,0 +1,19 @@
+{
+	"name": "transform-loader",
+	"version": "0.1.0",
+	"author": "Tobias Koppers @sokra",
+	"description": "transform loader for webpack",
+	"repository": {
+		"type": "git",
+		"url": "http://github.com/webpack/transform-loader.git"
+	},
+	"devDependencies": {
+		"brfs": "~0.0.8"
+	},
+	"licenses": [
+		{
+			"type": "MIT",
+			"url": "http://www.opensource.org/licenses/mit-license.php"
+		}
+	]
+}
