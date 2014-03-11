@@ -4,6 +4,8 @@ Use a browserify transforms as webpack-loader
 
 ## Usage
 
+[Documentation: Using loaders](http://webpack.github.io/docs/using-loaders.html)
+
 Pass the module name as query parameter.
 
 ``` javascript
