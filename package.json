@@ -8,7 +8,8 @@
 		"url": "http://github.com/webpack/transform-loader.git"
 	},
 	"devDependencies": {
-		"brfs": "~0.0.8"
+		"brfs": "~1.0.0",
+		"coffeeify": "~0.6.0"
 	},
 	"licenses": [
 		{

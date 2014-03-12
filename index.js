@@ -2,11 +2,11 @@
 	MIT License http://www.opensource.org/licenses/mit-license.php
 	Author Tobias Koppers @sokra
 */
-var baseRegex = "\s*[@#]\s*sourceMappingURL=data:[^;]+;base64,(.*)",
+var baseRegex = "\\s*[@#]\\s*sourceMappingURL=data:[^;\n]+;base64,(.*)",
 	// Matches /* ... */ comments
-	regex1 = new RegExp("\/\*"+baseRegex+"\*\/.*$"),
+	regex1 = new RegExp("/\\*"+baseRegex+"\\s*\\*/$"),
 	// Matches // .... comments
-	regex2 = new RegExp("\/\/"+baseRegex+".*$");
+	regex2 = new RegExp("//"+baseRegex+".*$");
 module.exports = function(input) {
 	if(!this.query) throw new Error("Pass a module name as query to the transform-loader.");
 	var callback = this.async();
@@ -28,9 +28,13 @@ module.exports = function(input) {
 			bufs.push(b);
 		});
 		stream.on("end", function() {
-			var b = Buffer.concat(bufs).toString(),
-				match = b.match(regex1) || b.match(regex2),
-				map = match && (new Buffer(match[1], "base64")).toString();
+			var b = Buffer.concat(bufs).toString();
+			var match = b.match(regex1) || b.match(regex2);
+			try {
+				var map = match && JSON.parse((new Buffer(match[1], "base64")).toString());
+			} catch(e) {
+				var map = null;
+			}
 			callback(null, map ? b.replace(match[0], "") : b, map);
 		});
 		stream.on("error", function(err) {

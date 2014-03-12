@@ -6,6 +6,10 @@ module.exports = {
 			{
 				test: /test\.js$/,
 				loader: __dirname + "/../cacheable?brfs"
+			},
+			{
+				test: /\.coffee$/,
+				loader: __dirname + "/../cacheable?coffeeify"
 			}
 		]
 	}
