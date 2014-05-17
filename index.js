@@ -24,10 +24,12 @@ module.exports = function(input) {
 	function next(transformFn) {
 		var stream = transformFn(resource);
 		var bufs = [];
+		var done = false;
 		stream.on("data", function(b) {
 			bufs.push(b);
 		});
 		stream.on("end", function() {
+			if(done) return;
 			var b = Buffer.concat(bufs).toString();
 			var match = b.match(regex1) || b.match(regex2);
 			try {
@@ -35,9 +37,12 @@ module.exports = function(input) {
 			} catch(e) {
 				var map = null;
 			}
+			done = true;
 			callback(null, map ? b.replace(match[0], "") : b, map);
 		});
 		stream.on("error", function(err) {
+			if(done) return;
+			done = true;
 			callback(err);
 		});
 		stream.write(input);
