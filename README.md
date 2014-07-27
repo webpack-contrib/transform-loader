@@ -48,6 +48,32 @@ module.exports = {
 };
 ```
 
+### Typical brfs Example
+
+Say you have the following Node source:
+
+```js
+var test = require('fs').readFileSync('./test.txt', 'utf8');
+```
+
+After `npm install transform-loader brfs --save`, your config will look like this:
+
+```js
+module.exports = {
+    context: __dirname,
+    entry: "./index.js",
+    module: {
+        loaders: [
+            {
+                test: /\.js$/,
+                loader: "transform?brfs"
+            }
+        ]
+    }
+}
+```
+
+The loader is applied to all JS files, which can incur a performance hit with watch tasks. So you may want to use `transform/cacheable?brfs` instead. 
 
 ## License
 
