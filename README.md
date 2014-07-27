@@ -56,7 +56,7 @@ Say you have the following Node source:
 var test = require('fs').readFileSync('./test.txt', 'utf8');
 ```
 
-After `npm install transform-loader brfs --save`, your config will look like this:
+After `npm install transform-loader brfs --save`, add the following loader to your config:
 
 ```js
 module.exports = {
