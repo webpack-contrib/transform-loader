@@ -10,6 +10,10 @@ module.exports = {
 			{
 				test: /\.coffee$/,
 				loader: __dirname + "/../cacheable?coffeeify"
+			},
+			{
+				test: /options\.js$/,
+				loader: __dirname + "/../cacheable?brfs=>{vars: { filename: './test/file.txt' } }"
 			}
 		]
 	}

@@ -2,6 +2,8 @@
 	MIT License http://www.opensource.org/licenses/mit-license.php
 	Author Tobias Koppers @sokra
 */
+var JSON5 = require("json5");
+var loaderUtils = require("loader-utils");
 var baseRegex = "\\s*[@#]\\s*sourceMappingURL=data:[^;\n]+;base64,(.*)",
 	// Matches /* ... */ comments
 	regex1 = new RegExp("/\\*"+baseRegex+"\\s*\\*/$"),
@@ -10,19 +12,32 @@ var baseRegex = "\\s*[@#]\\s*sourceMappingURL=data:[^;\n]+;base64,(.*)",
 module.exports = function(input) {
 	if(!this.query) throw new Error("Pass a module name as query to the transform-loader.");
 	var callback = this.async();
+	var query = loaderUtils.parseQuery(this.query);
 	var resource = this.resource;
 	var loaderContext = this;
-	var q = this.query.substr(1);
-	if(/^[0-9]+$/.test(q)) {
-		next(this.options.transforms[+q]);
-	} else {
-		this.resolve(this.context, q, function(err, module) {
-			if(err) return callback(err);
-			next(require(module));
-		});
-	}
-	function next(transformFn) {
-		var stream = transformFn(resource);
+	Object.keys(query).forEach(function(name) {
+		var options = {};
+		if(typeof query[name] == "string" && query[name].substr(0, 1) == ">") {
+			options = query[name].substr(1);
+		} else {
+			options = query[name];
+		}
+
+		if(typeof options === "string") {
+			options = JSON5.parse(options);
+		}
+
+		if(/^[0-9]+$/.test(name)) {
+			next(this.options.transforms[+name], options);
+		} else {
+			this.resolve(this.context, name, function(err, module) {
+				if(err) return callback(err);
+				next(require(module), options);
+			});
+		}
+	}, this);
+	function next(transformFn, options) {
+		var stream = transformFn(resource, options);
 		var bufs = [];
 		var done = false;
 		stream.on("data", function(b) {
