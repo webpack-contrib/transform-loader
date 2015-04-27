@@ -2,7 +2,7 @@
 	MIT License http://www.opensource.org/licenses/mit-license.php
 	Author Tobias Koppers @sokra
 */
-var baseRegex = "\\s*[@#]\\s*sourceMappingURL=data:[^;\n]+;base64,(.*)",
+var baseRegex = "\\s*[@#]\\s*sourceMappingURL=data:[^;\n]+;base64,([^\\s]*)",
 	// Matches /* ... */ comments
 	regex1 = new RegExp("/\\*"+baseRegex+"\\s*\\*/$"),
 	// Matches // .... comments
@@ -48,5 +48,5 @@ module.exports = function(input) {
 		stream.write(input);
 		stream.end();
 	}
-}
+};
 module.exports.raw = true;
