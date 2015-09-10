@@ -26,7 +26,7 @@ module.exports = function(input) {
 		var bufs = [];
 		var done = false;
 		stream.on("data", function(b) {
-			bufs.push(b);
+			bufs.push(Buffer.isBuffer(b) ? b : new Buffer(b));
 		});
 		stream.on("end", function() {
 			if(done) return;
