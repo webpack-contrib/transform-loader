@@ -2,6 +2,7 @@
 	MIT License http://www.opensource.org/licenses/mit-license.php
 	Author Tobias Koppers @sokra
 */
+var loaderUtils = require("loader-utils");
 var baseRegex = "\\s*[@#]\\s*sourceMappingURL=data:[^;\n]+;base64,([^\\s]*)",
 	// Matches /* ... */ comments
 	regex1 = new RegExp("/\\*"+baseRegex+"\\s*\\*/$"),
@@ -9,10 +10,11 @@ var baseRegex = "\\s*[@#]\\s*sourceMappingURL=data:[^;\n]+;base64,([^\\s]*)",
 	regex2 = new RegExp("//"+baseRegex+".*$");
 module.exports = function(input) {
 	if(!this.query) throw new Error("Pass a module name as query to the transform-loader.");
+	var query = loaderUtils.parseQuery(this.query);
 	var callback = this.async();
 	var resource = this.resource;
 	var loaderContext = this;
-	var q = this.query.substr(1);
+	var q = Object.keys(query)[0];
 	if(/^[0-9]+$/.test(q)) {
 		next(this.options.transforms[+q]);
 	} else {
