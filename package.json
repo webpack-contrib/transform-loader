@@ -7,6 +7,9 @@
     "type": "git",
     "url": "http://github.com/webpack/transform-loader.git"
   },
+  "dependencies": {
+    "loader-utils": "^0.2.16"
+  },
   "devDependencies": {
     "brfs": "~1.0.0",
     "coffeeify": "~0.6.0"
