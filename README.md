@@ -9,30 +9,68 @@ Use a browserify transforms as webpack-loader
 Pass the module name as query parameter.
 
 ``` javascript
-var x = require("!transform?brfs!./file.js");
-var x = require("!transform/cacheable?brfs!./file.js"); // cacheable version
+var x = require("!transform-loader?brfs!./file.js");
+var x = require("!transform-loader/cacheable?brfs!./file.js"); // cacheable version
 ```
 
 If you pass a number instead it will take the function from `this.options.transforms[number]`.
 
-### Example webpack config
+### Example webpack 2 config
+
+``` javascript
+module.exports = {
+  module: {
+    rules: [
+      {
+        loader: "transform-loader?brfs",
+        enforce: "post"
+      },
+			{
+        test: /\.coffee$/,
+        loader: "transform-loader/cacheable?coffeeify"
+      },
+      {
+        test: /\.weirdjs$/,
+        loader: "transform-loader?0"
+      }
+    ]
+  },
+  plugins: [
+    new webpack.LoaderOptionsPlugin({
+      options: {
+        transforms: [
+          function(file) {
+            return through(function(buf) {
+              this.queue(buf.split("").map(function(s) {
+                return String.fromCharCode(127-s.charCodeAt(0));
+              }).join(""));
+            }, function() { this.queue(null); });
+          }
+        ]
+      }
+    })
+  ]
+};
+```
+
+### Example webpack 1 config
 
 ``` javascript
 module.exports = {
 	module: {
 		postLoaders: [
 			{
-				loader: "transform?brfs"
+				loader: "transform-loader?brfs"
 			}
 		]
 		loaders: [
 			{
 				test: /\.coffee$/,
-				loader: "transform/cacheable?coffeeify"
+				loader: "transform-loader/cacheable?coffeeify"
 			},
 			{
 				test: /\.weirdjs$/,
-				loader: "transform?0"
+				loader: "transform-loader?0"
 			}
 		]
 	},
@@ -66,14 +104,14 @@ module.exports = {
         loaders: [
             {
                 test: /\.js$/,
-                loader: "transform?brfs"
+                loader: "transform-loader?brfs"
             }
         ]
     }
 }
 ```
 
-The loader is applied to all JS files, which can incur a performance hit with watch tasks. So you may want to use `transform/cacheable?brfs` instead. 
+The loader is applied to all JS files, which can incur a performance hit with watch tasks. So you may want to use `transform-loader/cacheable?brfs` instead. 
 
 ## License
 
