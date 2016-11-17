@@ -15,7 +15,45 @@ var x = require("!transform-loader/cacheable?brfs!./file.js"); // cacheable vers
 
 If you pass a number instead it will take the function from `this.options.transforms[number]`.
 
-### Example webpack config
+### Example webpack 2 config
+
+``` javascript
+module.exports = {
+  module: {
+    rules: [
+      {
+        loader: "transform-loader?brfs",
+        enforce: "post"
+      },
+			{
+        test: /\.coffee$/,
+        loader: "transform-loader/cacheable?coffeeify"
+      },
+      {
+        test: /\.weirdjs$/,
+        loader: "transform-loader?0"
+      }
+    ]
+  },
+  plugins: [
+    new webpack.LoaderOptionsPlugin({
+      options: {
+        transforms: [
+          function(file) {
+            return through(function(buf) {
+              this.queue(buf.split("").map(function(s) {
+                return String.fromCharCode(127-s.charCodeAt(0));
+              }).join(""));
+            }, function() { this.queue(null); });
+          }
+        ]
+      }
+    })
+  ]
+};
+```
+
+### Example webpack 1 config
 
 ``` javascript
 module.exports = {
