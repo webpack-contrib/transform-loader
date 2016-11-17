@@ -9,8 +9,8 @@ Use a browserify transforms as webpack-loader
 Pass the module name as query parameter.
 
 ``` javascript
-var x = require("!transform?brfs!./file.js");
-var x = require("!transform/cacheable?brfs!./file.js"); // cacheable version
+var x = require("!transform-loader?brfs!./file.js");
+var x = require("!transform-loader/cacheable?brfs!./file.js"); // cacheable version
 ```
 
 If you pass a number instead it will take the function from `this.options.transforms[number]`.
@@ -22,17 +22,17 @@ module.exports = {
 	module: {
 		postLoaders: [
 			{
-				loader: "transform?brfs"
+				loader: "transform-loader?brfs"
 			}
 		]
 		loaders: [
 			{
 				test: /\.coffee$/,
-				loader: "transform/cacheable?coffeeify"
+				loader: "transform-loader/cacheable?coffeeify"
 			},
 			{
 				test: /\.weirdjs$/,
-				loader: "transform?0"
+				loader: "transform-loader?0"
 			}
 		]
 	},
@@ -66,14 +66,14 @@ module.exports = {
         loaders: [
             {
                 test: /\.js$/,
-                loader: "transform?brfs"
+                loader: "transform-loader?brfs"
             }
         ]
     }
 }
 ```
 
-The loader is applied to all JS files, which can incur a performance hit with watch tasks. So you may want to use `transform/cacheable?brfs` instead. 
+The loader is applied to all JS files, which can incur a performance hit with watch tasks. So you may want to use `transform-loader/cacheable?brfs` instead. 
 
 ## License
 
