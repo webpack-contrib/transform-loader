@@ -1,8 +1,24 @@
-# transform loader for webpack
+[![npm][npm]][npm-url]
+[![deps][deps]][deps-url]
+[![chat][chat]][chat-url]
 
-Use a browserify transforms as webpack-loader
+<div align="center">
+  <!-- replace with accurate logo e.g from https://worldvectorlogo.com/ -->
+  <a href="https://github.com/webpack/webpack">
+    <img width="200" height="200" vspace="" hspace="25"
+      src="https://cdn.rawgit.com/webpack/media/e7485eb2/logo/icon.svg">
+  </a>
+  <h1>Transform Loader</h1>
+  <p>Use a browserify transforms as webpack-loader.<p>
+</div>
 
-## Usage
+<h2 align="center">Install</h2>
+
+```bash
+npm i transform-loader --save
+```
+
+<h2 align="center">Usage</h2>
 
 [Documentation: Using loaders](http://webpack.github.io/docs/using-loaders.html)
 
@@ -15,7 +31,7 @@ var x = require("!transform-loader/cacheable?brfs!./file.js"); // cacheable vers
 
 If you pass a number instead it will take the function from `this.options.transforms[number]`.
 
-### Example webpack 2 config
+<h2 align="center">Webpack 2.x Config Example</h2>
 
 ``` javascript
 module.exports = {
@@ -53,7 +69,7 @@ module.exports = {
 };
 ```
 
-### Example webpack 1 config
+<h2 align="center">Webpack 1.x Config Example</h2>
 
 ``` javascript
 module.exports = {
@@ -86,7 +102,7 @@ module.exports = {
 };
 ```
 
-### Typical brfs Example
+<h2 align="center">Typical brfs Example</h2>
 
 Say you have the following Node source:
 
@@ -113,6 +129,45 @@ module.exports = {
 
 The loader is applied to all JS files, which can incur a performance hit with watch tasks. So you may want to use `transform-loader/cacheable?brfs` instead. 
 
-## License
+<h2 align="center">Maintainers</h2>
 
-MIT (http://www.opensource.org/licenses/mit-license.php)
+<table>
+  <tbody>
+    <tr>
+      <td align="center">
+        <img width="150" height="150"
+        src="https://avatars3.githubusercontent.com/u/166921?v=3&s=150">
+        </br>
+        <a href="https://github.com/bebraw">Juho Vepsäläinen</a>
+      </td>
+      <td align="center">
+        <img width="150" height="150"
+        src="https://avatars2.githubusercontent.com/u/8420490?v=3&s=150">
+        </br>
+        <a href="https://github.com/d3viant0ne">Joshua Wiens</a>
+      </td>
+      <td align="center">
+        <img width="150" height="150"
+        src="https://avatars3.githubusercontent.com/u/533616?v=3&s=150">
+        </br>
+        <a href="https://github.com/SpaceK33z">Kees Kluskens</a>
+      </td>
+      <td align="center">
+        <img width="150" height="150"
+        src="https://avatars3.githubusercontent.com/u/3408176?v=3&s=150">
+        </br>
+        <a href="https://github.com/TheLarkInn">Sean Larkin</a>
+      </td>
+    </tr>
+  <tbody>
+</table>
+
+
+[npm]: https://img.shields.io/npm/v/transform-loader.svg
+[npm-url]: https://npmjs.com/package/transform-loader
+
+[deps]: https://david-dm.org/webpack-contrib/transform-loader.svg
+[deps-url]: https://david-dm.org/webpack-contrib/transform-loader
+
+[chat]: https://img.shields.io/badge/gitter-webpack%2Fwebpack-brightgreen.svg
+[chat-url]: https://gitter.im/webpack/webpack
