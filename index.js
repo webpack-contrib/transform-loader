@@ -10,7 +10,7 @@ var baseRegex = "\\s*[@#]\\s*sourceMappingURL=data:[^;\n]+;base64,([^\\s]*)",
 	regex2 = new RegExp("//"+baseRegex+".*$");
 module.exports = function(input) {
 	if(!this.query) throw new Error("Pass a module name as query to the transform-loader.");
-	var query = loaderUtils.parseQuery(this.query);
+	var query = loaderUtils.getOptions(this) || {};
 	var callback = this.async();
 	var resource = this.resource;
 	var loaderContext = this;
