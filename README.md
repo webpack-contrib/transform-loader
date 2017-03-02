@@ -41,7 +41,7 @@ module.exports = {
         loader: "transform-loader?brfs",
         enforce: "post"
       },
-			{
+      {
         test: /\.coffee$/,
         loader: "transform-loader/cacheable?coffeeify"
       },
