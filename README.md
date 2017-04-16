@@ -20,7 +20,7 @@ npm i transform-loader --save
 
 <h2 align="center">Usage</h2>
 
-[Documentation: Using loaders](http://webpack.github.io/docs/using-loaders.html)
+[Documentation: Using loaders](https://webpack.js.org/concepts/loaders/)
 
 Pass the module name as query parameter.
 
