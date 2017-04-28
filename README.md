@@ -9,7 +9,7 @@
       src="https://cdn.rawgit.com/webpack/media/e7485eb2/logo/icon.svg">
   </a>
   <h1>Transform Loader</h1>
-  <p>Use a browserify transforms as webpack-loader.<p>
+  <p>Use <a href="https://github.com/substack/node-browserify/wiki/list-of-transforms">browserify transforms</a> as webpack-loader.<p>
 </div>
 
 <h2 align="center">Install</h2>
