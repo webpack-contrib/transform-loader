@@ -17,7 +17,7 @@ export default function (input) {
   const query = loaderUtils.getOptions(this) || {};
   const callback = this.async();
   const resource = this.resource;
-  const loaderContext = this;
+  // const loaderContext = this;
   const q = Object.keys(query)[0];
   if (/^[0-9]+$/.test(q)) {
     next(this.options.transforms[+q]);
@@ -30,6 +30,7 @@ export default function (input) {
   function next(transformFn) {
     const stream = transformFn(resource);
     const bufs = [];
+    let map = null;
     let done = false;
     stream.on('data', (b) => {
       bufs.push(Buffer.isBuffer(b) ? b : new Buffer(b));
@@ -39,9 +40,9 @@ export default function (input) {
       const b = Buffer.concat(bufs).toString();
       const match = b.match(regex1) || b.match(regex2);
       try {
-        var map = match && JSON.parse((new Buffer(match[1], 'base64')).toString());
+        map = match && JSON.parse((new Buffer(match[1], 'base64')).toString());
       } catch (e) {
-        var map = null;
+        map = null;
       }
       done = true;
       callback(null, map ? b.replace(match[0], '') : b, map);
