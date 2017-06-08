@@ -1,3 +1,21 @@
 {
-  "extends": "webpack"
+  "extends": "webpack",
+  "rules": {
+    "line-comment-position": 0,
+    "consistent-return": 0,
+    "prefer-destructuring": 1,
+    "import/no-dynamic-require": 1,
+    "global-require": 1
+  }
 }
+
+// {
+//   "extends": "webpack",
+//   "rules": {
+//     "no-param-reassign": 1,
+//     "prefer-destructuring": 1,
+//     "line-comment-position": 0,
+//     "consistent-return": 0,
+//     "no-useless-return": 0
+//   }
+// }
