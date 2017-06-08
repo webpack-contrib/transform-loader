@@ -24,7 +24,6 @@ Pass the module name as query parameter.
 
 ``` javascript
 var x = require("!transform-loader?brfs!./file.js");
-var x = require("!transform-loader/cacheable?brfs!./file.js"); // cacheable version
 ```
 
 If you pass a number instead it will take the function from `this.options.transforms[number]`.
@@ -38,23 +37,6 @@ module.exports = {
       {
         loader: "transform-loader?brfs",
         enforce: "post",
-        options: {
-          transforms: [
-              function (/*file*/) {
-                  return through((buffer) => {
-                      return this.queue(
-                          buffer.split('')
-                              .map((chunk) => String.fromCharCode(127-chunk.charCodeAt(0))))
-                              .join('')
-                  }, () => this.queue(null))
-              }
-          ]
-        }
-      },
-
-      {
-        test: /\.coffee$/,
-        loader: "transform-loader/cacheable?coffeeify",
         options: {
           transforms: [
               function (/*file*/) {
@@ -90,39 +72,6 @@ module.exports = {
 };
 ```
 
-<h2 align="center">webpack 1 config example</h2>
-
-``` javascript
-module.exports = {
-	module: {
-		postLoaders: [
-			{
-				loader: "transform-loader?brfs"
-			}
-		]
-		loaders: [
-			{
-				test: /\.coffee$/,
-				loader: "transform-loader/cacheable?coffeeify"
-			},
-			{
-				test: /\.weirdjs$/,
-				loader: "transform-loader?0"
-			}
-		]
-	},
-	transforms: [
-		function(file) {
-			return through(function(buf) {
-				this.queue(buf.split("").map(function(s) {
-					return String.fromCharCode(127-s.charCodeAt(0));
-				}).join(""));
-			}, function() { this.queue(null); });
-		}
-	]
-};
-```
-
 <h2 align="center">Typical brfs Example</h2>
 
 Say you have the following Node source:
@@ -148,7 +97,7 @@ module.exports = {
 }
 ```
 
-The loader is applied to all JS files, which can incur a performance hit with watch tasks. So you may want to use `transform-loader/cacheable?brfs` instead. 
+The loader is applied to all JS files, which can incur a performance hit with watch tasks. So you may want to use `transform-loader/cacheable?brfs` instead.
 
 <h2 align="center">Maintainers</h2>
 
