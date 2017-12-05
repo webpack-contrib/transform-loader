@@ -55,6 +55,12 @@
     "webpack": "^3.10.0",
     "webpack-defaults": "^1.6.0"
   },
+  "peerDependencies": {
+    "webpack": "^3.0.0 || ^4.0.0-alpha.0 || ^4.0.0"
+  },
+  "engines": {
+    "node": ">= 6 || >= 8"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/webpack-contrib/transform-loader.git"
@@ -63,12 +69,6 @@
     "url": "https://github.com/webpack-contrib/transform-loader/issues"
   },
   "homepage": "https://github.com/webpack-contrib/transform-loader",
-  "engines": {
-    "node": ">= 4.8 < 5.0.0 || >= 5.10"
-  },
-  "peerDependencies": {
-    "webpack": "^2.0.0 || ^3.0.0"
-  },
   "pre-commit": "lint-staged",
   "lint-staged": {
     "*.js": [
