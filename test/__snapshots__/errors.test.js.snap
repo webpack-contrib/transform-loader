@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Errors Loader Error 1`] = `"Pass a module name as query to the transform-loader."`;
+
+exports[`Errors Validation Error 1`] = `"this.async is not a function"`;

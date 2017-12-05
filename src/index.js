@@ -7,10 +7,10 @@ import loaderUtils from 'loader-utils';
 const baseRegex = '\\s*[@#]\\s*sourceMappingURL=data:[^;\n]+;base64,([^\\s]*)';
 
 const // Matches /* ... */ comments
-regex1 = new RegExp(`/\\*${baseRegex}\\s*\\*/$`);
+  regex1 = new RegExp(`/\\*${baseRegex}\\s*\\*/$`);
 
 const // Matches // .... comments
-regex2 = new RegExp(`//${baseRegex}.*$`);
+  regex2 = new RegExp(`//${baseRegex}.*$`);
 
 export default function (input) {
   if (!this.query) throw new Error('Pass a module name as query to the transform-loader.');
