@@ -23,11 +23,10 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --collectCoverageFrom='src/**/*.js' --coverage",
-    "travis:coverage": "npm run test:coverage -- --runInBand",
-    "travis:lint": "npm run lint && npm run security",
-    "travis:test": "npm run test -- --runInBand",
-    "webpack-defaults": "webpack-defaults",
-    "appveyor:test": "npm run test"
+    "ci:coverage": "npm run test:coverage -- --runInBand",
+    "ci:lint": "npm run lint && npm run security",
+    "ci:test": "npm run test -- --runInBand",
+    "webpack-defaults": "webpack-defaults"
   },
   "dependencies": {
     "loader-utils": "^1.1.0"
