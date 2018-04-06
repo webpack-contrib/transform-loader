@@ -1,143 +1,143 @@
-[![npm][npm]][npm-url]
-[![deps][deps]][deps-url]
-[![chat][chat]][chat-url]
-
 <div align="center">
-  <!-- replace with accurate logo e.g from https://worldvectorlogo.com/ -->
   <a href="https://github.com/webpack/webpack">
-    <img width="200" height="200" vspace="" hspace="25"
-      src="https://cdn.rawgit.com/webpack/media/e7485eb2/logo/icon.svg">
+    <img width="200" height="200" src="https://webpack.js.org/assets/icon-square-big.svg">
   </a>
-  <h1>Transform Loader</h1>
-  <p>Use <a href="https://github.com/substack/node-browserify/wiki/list-of-transforms">browserify transforms</a> as webpack-loader.<p>
 </div>
 
-<h2 align="center">Install</h2>
+[![npm][npm]][npm-url]
+[![node][node]][node-url]
+[![deps][deps]][deps-url]
+[![tests][tests]][tests-url]
+[![chat][chat]][chat-url]
 
-```bash
-npm i transform-loader --save
+# transform-loader
+
+A browserify transformation loader for webpack.
+
+This loader allows use of
+[browserify transforms](https://github.com/substack/node-browserify/wiki/list-of-transforms)
+via a webpack loader.
+
+## Requirements
+
+This module requires a minimum of Node v6.9.0 and Webpack v4.0.0.
+
+## Getting Started
+
+To begin, you'll need to install `transform-loader`:
+
+```console
+$ npm install transform-loader --save-dev
 ```
 
-<h2 align="center"><a href="https://webpack.js.org/concepts/loaders">Usage</a></h2>
+<!-- isLoader ? use(this) : delete(isPlugin) -->
+Then add the loader to your `webpack` config. For example:
 
-Pass the module name as query parameter.
+<!-- isPlugin ? use(this) : delete(isLoader) -->
+Then add the plugin to your `webpack` config. For example:
 
-``` javascript
-var x = require("!transform-loader?brfs!./file.js");
+**file.ext**
+```js
+import file from 'file.ext';
 ```
 
-If you pass a number instead it will take the function from `this.options.transforms[number]`.
-
-<h2 align="center">webpack 2 config example</h2>
-
-``` javascript
+<!-- isLoader ? use(this) : delete(isPlugin) -->
+**webpack.config.js**
+```js
 module.exports = {
   module: {
     rules: [
       {
-        loader: "transform-loader?brfs",
-        enforce: "post",
-        options: {
-          transforms: [
-              function (/*file*/) {
-                  return through((buffer) => {
-                      return this.queue(
-                          buffer.split('')
-                              .map((chunk) => String.fromCharCode(127-chunk.charCodeAt(0))))
-                              .join('')
-                  }, () => this.queue(null))
-              }
-          ]
-        }
-      },
-
-      {
-        test: /\.weirdjs$/,
-        loader: "transform-loader?0",
-        options: {
-          transforms: [
-              function (/*file*/) {
-                  return through((buffer) => {
-                      return this.queue(
-                          buffer.split('')
-                              .map((chunk) => String.fromCharCode(127-chunk.charCodeAt(0))))
-                              .join('')
-                  }, () => this.queue(null))
-              }
-          ]
-        }
+        test: /\.ext$/,
+        use: [
+          {
+            loader: `${name.toLowerCase()}-loader`,
+            options: {...options}
+          }
+        ]
       }
     ]
   }
-};
-```
-
-<h2 align="center">Typical brfs Example</h2>
-
-Say you have the following Node source:
-
-```js
-var test = require('fs').readFileSync('./test.txt', 'utf8');
-```
-
-After `npm install transform-loader brfs --save`, add the following loader to your config:
-
-```js
-module.exports = {
-    context: __dirname,
-    entry: "./index.js",
-    module: {
-        loaders: [
-            {
-                test: /\.js$/,
-                loader: "transform-loader?brfs"
-            }
-        ]
-    }
 }
 ```
 
-The loader is applied to all JS files, which can incur a performance hit with watch tasks. So you may want to use `transform-loader/cacheable?brfs` instead.
+<!-- isPlugin ? use(this) : delete(isLoader) -->
+**webpack.config.js**
+```js
+module.exports = {
+  plugins: [
+    new `${name}`Plugin(options)
+  ]
+}
+```
 
-<h2 align="center">Maintainers</h2>
+And run `webpack` via your preferred method.
 
-<table>
-  <tbody>
-    <tr>
-      <td align="center">
-        <img width="150" height="150"
-        src="https://avatars3.githubusercontent.com/u/166921?v=3&s=150">
-        </br>
-        <a href="https://github.com/bebraw">Juho Vepsäläinen</a>
-      </td>
-      <td align="center">
-        <img width="150" height="150"
-        src="https://avatars2.githubusercontent.com/u/8420490?v=3&s=150">
-        </br>
-        <a href="https://github.com/d3viant0ne">Joshua Wiens</a>
-      </td>
-      <td align="center">
-        <img width="150" height="150"
-        src="https://avatars3.githubusercontent.com/u/533616?v=3&s=150">
-        </br>
-        <a href="https://github.com/SpaceK33z">Kees Kluskens</a>
-      </td>
-      <td align="center">
-        <img width="150" height="150"
-        src="https://avatars3.githubusercontent.com/u/3408176?v=3&s=150">
-        </br>
-        <a href="https://github.com/TheLarkInn">Sean Larkin</a>
-      </td>
-    </tr>
-  <tbody>
-</table>
+## Options
 
+### `[option]`
+
+Type: `[type|other-type]`
+Default: `[type|null]`
+
+[ option description ]
+
+<!-- isLoader ? use(this) : delete(isPlugin) -->
+```js
+// in your webpack.config.js
+{
+  loader: `${name.toLowerCase()}-loader`,
+  options: {
+    [option]: ''
+  }
+}
+```
+
+<!-- isPlugin ? use(this) : delete(isLoader) -->
+```js
+// in your webpack.config.js
+new `${name}`Plugin({
+  [option]: ''
+})
+```
+
+## Examples
+
+[ example outline text ]
+
+**webpack.config.js**
+```js
+// Example setup here..
+```
+
+**file.ext**
+```js
+// Source code here...
+```
+
+**bundle.js**
+```js
+// Bundle code here...
+```
+
+## License
+
+#### [MIT](./LICENSE)
 
 [npm]: https://img.shields.io/npm/v/transform-loader.svg
 [npm-url]: https://npmjs.com/package/transform-loader
 
+[node]: https://img.shields.io/node/v/transform-loader.svg
+[node-url]: https://nodejs.org
+
 [deps]: https://david-dm.org/webpack-contrib/transform-loader.svg
 [deps-url]: https://david-dm.org/webpack-contrib/transform-loader
+
+[tests]: 	https://img.shields.io/circleci/project/github/webpack-contrib/transform-loader.svg
+[tests-url]: https://circleci.com/gh/webpack-contrib/transform-loader
+
+[cover]: https://codecov.io/gh/webpack-contrib/transform-loader/branch/master/graph/badge.svg
+[cover-url]: https://codecov.io/gh/webpack-contrib/transform-loader
 
 [chat]: https://img.shields.io/badge/gitter-webpack%2Fwebpack-brightgreen.svg
 [chat-url]: https://gitter.im/webpack/webpack

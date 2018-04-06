@@ -1,21 +1,22 @@
-/* eslint-disable
-  prefer-destructuring,
-*/
 import webpack from './helpers/compiler';
 
 describe('Loader', () => {
   test('Defaults', async () => {
     const config = {
       module: {
-        rules: [{
-          test: /\.coffee?$/,
-          loader: `${__dirname}/../src/cjs?coffeeify`,
-        }],
+        rules: [
+          {
+            test: /\.coffee?$/,
+            loader: `${__dirname}/../src/cjs?coffeeify`,
+          },
+        ],
       },
     };
 
     const stats = await webpack('fixture.js', config);
-    const { source } = stats.toJson().modules[1];
+    const { modules } = stats.toJson();
+    const [module] = modules;
+    const { source } = module;
 
     expect(source).toMatchSnapshot();
   });
