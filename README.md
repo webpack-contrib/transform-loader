@@ -77,7 +77,7 @@ The name of the `browserify` transform you wish to use.
 _Note: You must install the correct transform manually. Webpack nor this loader
 will do that for you._
 
-### <loder-name>
+### <loder-index>
 
 Type: `Number`
 
