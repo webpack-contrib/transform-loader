@@ -15,8 +15,9 @@ module.exports = function(input) {
 	var resource = this.resource;
 	var loaderContext = this;
 	var q = Object.keys(query)[0];
-	if(/^[0-9]+$/.test(q)) {
-		next(this.options.transforms[+q]);
+	var reg = /^[0-9]+$/;
+	if(reg.test(q) || reg.test(query.index)) {
+		next(query.transforms[query.index]);
 	} else {
 		this.resolve(this.context, q, function(err, module) {
 			if(err) return callback(err);
