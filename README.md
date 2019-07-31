@@ -58,7 +58,7 @@ module.exports = {
       },
     ],
   },
-}
+};
 ```
 
 And run `webpack` via your preferred method.
@@ -118,18 +118,20 @@ module.exports = {
                 (buffer) => {
                   const result = buffer
                     .split('')
-                    .map((chunk) => String.fromCharCode(127 - chunk.charCodeAt(0)));
+                    .map((chunk) =>
+                      String.fromCharCode(127 - chunk.charCodeAt(0))
+                    );
                   return this.queue(result).join('');
                 },
                 () => this.queue(null)
               );
-            }
-          ]
-        }
-      }
-    ]
-  }
-}
+            },
+          ],
+        },
+      },
+    ],
+  },
+};
 ```
 
 ## License
@@ -138,18 +140,13 @@ module.exports = {
 
 [npm]: https://img.shields.io/npm/v/transform-loader.svg
 [npm-url]: https://npmjs.com/package/transform-loader
-
 [node]: https://img.shields.io/node/v/transform-loader.svg
 [node-url]: https://nodejs.org
-
 [deps]: https://david-dm.org/webpack-contrib/transform-loader.svg
 [deps-url]: https://david-dm.org/webpack-contrib/transform-loader
-
-[tests]: 	https://img.shields.io/circleci/project/github/webpack-contrib/transform-loader.svg
+[tests]: https://img.shields.io/circleci/project/github/webpack-contrib/transform-loader.svg
 [tests-url]: https://circleci.com/gh/webpack-contrib/transform-loader
-
 [cover]: https://codecov.io/gh/webpack-contrib/transform-loader/branch/master/graph/badge.svg
 [cover-url]: https://codecov.io/gh/webpack-contrib/transform-loader
-
 [chat]: https://img.shields.io/badge/gitter-webpack%2Fwebpack-brightgreen.svg
 [chat-url]: https://gitter.im/webpack/webpack
