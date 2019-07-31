@@ -8,19 +8,15 @@
 [![node][node]][node-url]
 [![deps][deps]][deps-url]
 [![tests][tests]][tests-url]
+[![coverage][cover]][cover-url]
 [![chat][chat]][chat-url]
+[![size][size]][size-url]
 
 # transform-loader
 
 A browserify transformation loader for webpack.
 
-This loader allows use of
-[browserify transforms](https://github.com/substack/node-browserify/wiki/list-of-transforms)
-via a webpack loader.
-
-## Requirements
-
-This module requires a minimum of Node v6.9.0 and Webpack v4.0.0.
+This loader allows use of [browserify transforms](https://github.com/substack/node-browserify/wiki/list-of-transforms) via a webpack loader.
 
 ## Getting Started
 
@@ -134,9 +130,15 @@ module.exports = {
 };
 ```
 
+## Contributing
+
+Please take a moment to read our contributing guidelines if you haven't yet done so.
+
+[CONTRIBUTING](./.github/CONTRIBUTING.md)
+
 ## License
 
-#### [MIT](./LICENSE)
+[MIT](./LICENSE)
 
 [npm]: https://img.shields.io/npm/v/transform-loader.svg
 [npm-url]: https://npmjs.com/package/transform-loader
@@ -144,9 +146,11 @@ module.exports = {
 [node-url]: https://nodejs.org
 [deps]: https://david-dm.org/webpack-contrib/transform-loader.svg
 [deps-url]: https://david-dm.org/webpack-contrib/transform-loader
-[tests]: https://img.shields.io/circleci/project/github/webpack-contrib/transform-loader.svg
-[tests-url]: https://circleci.com/gh/webpack-contrib/transform-loader
+[tests]: https://dev.azure.com/webpack-contrib/transform-loader/_apis/build/status/webpack-contrib.transform-loader?branchName=master
+[tests-url]: https://dev.azure.com/webpack-contrib/transform-loader/_build/latest?definitionId=19&branchName=master
 [cover]: https://codecov.io/gh/webpack-contrib/transform-loader/branch/master/graph/badge.svg
 [cover-url]: https://codecov.io/gh/webpack-contrib/transform-loader
-[chat]: https://img.shields.io/badge/gitter-webpack%2Fwebpack-brightgreen.svg
+[chat]: https://badges.gitter.im/webpack/webpack.svg
 [chat-url]: https://gitter.im/webpack/webpack
+[size]: https://packagephobia.now.sh/badge?p=transform-loader
+[size-url]: https://packagephobia.now.sh/result?p=transform-loader
