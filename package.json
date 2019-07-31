@@ -3,10 +3,10 @@
   "version": "0.2.4",
   "description": "A browserify transformation loader for webpack",
   "license": "MIT",
-  "repository": "mistic/transform-loader",
+  "repository": "webpack-contrib/transform-loader",
   "author": "Tobias Koppers @sokra",
-  "homepage": "https://github.com/mistic/transform-loader",
-  "bugs": "https://github.com/mistic/transform-loader/issues",
+  "homepage": "https://github.com/webpack-contrib/transform-loader",
+  "bugs": "https://github.com/webpack-contrib/transform-loader/issues",
   "main": "dist/cjs.js",
   "engines": {
     "node": ">= 8.9.0"
