@@ -15,7 +15,7 @@ describe('Loader', () => {
 
     const stats = await webpack('fixture.js', config);
     const { modules } = stats.toJson();
-    const [module] = modules;
+    const [, module] = modules;
     const { source } = module;
 
     expect(source).toMatchSnapshot();
